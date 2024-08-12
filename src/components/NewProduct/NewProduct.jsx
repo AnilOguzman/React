@@ -1,9 +1,9 @@
 import ProductForm from "./ProductForm";
 
-const NewProduct = () => {
+const NewProduct = (props) => {
   return (
     <div className="new-product-wrapper">
-      <ProductForm />
+      <ProductForm setProducts={props.setProducts} />
     </div>
   );
 };

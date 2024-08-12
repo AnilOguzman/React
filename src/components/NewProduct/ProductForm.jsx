@@ -1,54 +1,40 @@
 import { useState } from "react";
 import "./ProductForm.css";
-const ProductForm = () => {
-  const [productData, setProductData] = useState({
-    productName: "",
-    productPrice: "",
-    imageUrl: "",
-  });
+const ProductForm = (props) => {
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
   const titleChangeHandler = (event) => {
-    /*setProductData({
-      ...productData,
-      productName: event.target.value,
-    });*/
-    setProductData((prevState)=>{
-        return{...prevState, 
-            productName:event.target.value};
-    });
+    setProductName(event.target.value);
   };
   const priceChangeHandler = (event) => {
-    /*setProductData({
-      ...productData,
-      productPrice: event.target.value,
-    });*/
-    setProductData((prevState)=>{
-        return {
-            ...prevState,
-            productPrice:event.target.value
-        };
-    });
+    setProductPrice(event.target.value);
   };
   const imageChangeHandler = (event) => {
-    /*setProductData({
-      ...productData,
-      imageUrl: event.target.value,
-    });*/
-    setProductData((prevState)=>{
-        return {
-            ...prevState,
-            imageUrl:event.target.value
-        }
-    });
+    setImageUrl(event.target.value);
   };
-
+  const submitHandler = (event) =>{
+    event.preventDefault()  //sayfanın otomatik kendini yenilemesini önlüyor.
+    const newProductData = {
+        productName,
+        productPrice,
+        imageUrl
+    };
+    props.setProducts((prevState)=>[...prevState,newProductData]);
+    setProductName(""); //butona bastığında inputu boşaltan yer
+    setProductPrice("");
+    setImageUrl("");
+  }
   return (
-    <form className="product-form">
+    <form className="product-form" onSubmit={submitHandler}>
       <div className="product-form-input">
         <label>Ürün Adı </label>
         <input
           type="text"
           placeholder="Ürün Adı Giriniz..."
           onChange={titleChangeHandler}
+          value={productName}  //bunu two way binding için aldık yani butona bastığında input boşalcak
         />
       </div>
       <div className="product-form-input">
@@ -57,14 +43,16 @@ const ProductForm = () => {
           type="number"
           placeholder="Ürün Fiyatı Giriniz..."
           onChange={priceChangeHandler}
+          value={productPrice}
         />
       </div>
       <div className="product-form-input">
-        <label>Ürün Görseli </label>
+        <label>Ürün Görseli</label>
         <input
           type="text"
           placeholder="Ürün Görseli Giriniz..."
           onChange={imageChangeHandler}
+          value={imageUrl}
         />
       </div>
       <button className="product-form-button">Ürün Ekle</button>
