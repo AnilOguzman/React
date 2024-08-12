@@ -1,15 +1,15 @@
-import {useState} from "react"
+import { useState } from "react";
 import "./ProductItem.css";
 import ProductInfo from "./ProductInfo";
+import Counter from "../Counter";
 
 const ProductItem = ({ product }) => {
   const { imageUrl, productName, productPrice } = product;
-  const [title,setTitle] = useState(productName);
-  const clickHandler = () =>
-    {
-      setTitle("Güncellendi");
-      console.log(productName, "Güncellendi"); //id kullanmadan hangi kartın güncellendiğini state hooku sayesinde anladı
-    };
+  const [title, setTitle] = useState(productName);
+  const clickHandler = () => {
+    setTitle("Güncellendi");
+    console.log(productName, "Güncellendi"); //id kullanmadan hangi kartın güncellendiğini state hooku sayesinde anladı
+  };
 
   return (
     <div className="product-item">
@@ -18,7 +18,9 @@ const ProductItem = ({ product }) => {
       </div>
       <ProductInfo>
         <h2>{title}</h2>
-        <span>{productPrice} TL</span>
+        <Counter productPrice={productPrice}>
+          <span>₺</span>
+        </Counter>
         <br />
         <button onClick={clickHandler}>Sepete Ekle</button>
       </ProductInfo>
