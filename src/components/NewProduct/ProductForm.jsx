@@ -7,21 +7,37 @@ const ProductForm = () => {
     imageUrl: "",
   });
   const titleChangeHandler = (event) => {
-    setProductData({
+    /*setProductData({
       ...productData,
       productName: event.target.value,
+    });*/
+    setProductData((prevState)=>{
+        return{...prevState, 
+            productName:event.target.value};
     });
   };
   const priceChangeHandler = (event) => {
-    setProductData({
+    /*setProductData({
       ...productData,
       productPrice: event.target.value,
+    });*/
+    setProductData((prevState)=>{
+        return {
+            ...prevState,
+            productPrice:event.target.value
+        };
     });
   };
   const imageChangeHandler = (event) => {
-    setProductData({
+    /*setProductData({
       ...productData,
       imageUrl: event.target.value,
+    });*/
+    setProductData((prevState)=>{
+        return {
+            ...prevState,
+            imageUrl:event.target.value
+        }
     });
   };
 
