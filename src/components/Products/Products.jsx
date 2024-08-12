@@ -1,9 +1,9 @@
 import ProductItem from "./ProductItem";
 import "./Products.css";
 import "./ProductInfo";
-import { productData } from "../productData";
+import { productData } from "../../productData";
 
-function Products() {
+const Products = () => {
   return (
     <div className="product-wrapper">
       <h1>Products</h1>
@@ -14,5 +14,5 @@ function Products() {
       </div>
     </div>
   );
-}
+};
 export default Products;

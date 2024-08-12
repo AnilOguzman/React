@@ -1,7 +1,7 @@
 import "./ProductItem.css";
 import ProductInfo from "./ProductInfo";
 
-function ProductItem({ product }) {
+const ProductItem = ({ product }) => {
   const { imageUrl, productName, productPrice } = product;
   return (
     <div className="product-item">
@@ -14,5 +14,5 @@ function ProductItem({ product }) {
       </ProductInfo>
     </div>
   ); //html içinde js kullanacağın zaman {} kullan
-}
+};
 export default ProductItem;
