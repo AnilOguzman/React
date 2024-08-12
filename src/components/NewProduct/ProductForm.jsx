@@ -14,18 +14,18 @@ const ProductForm = (props) => {
   const imageChangeHandler = (event) => {
     setImageUrl(event.target.value);
   };
-  const submitHandler = (event) =>{
-    event.preventDefault()  //sayfanın otomatik kendini yenilemesini önlüyor.
+  const submitHandler = (event) => {
+    event.preventDefault(); //sayfanın otomatik kendini yenilemesini önlüyor.
     const newProductData = {
-        productName,
-        productPrice,
-        imageUrl
+      productName,
+      productPrice,
+      imageUrl,
     };
-    props.setProducts((prevState)=>[...prevState,newProductData]);
+    props.setProducts((prevState) => [...prevState, newProductData]);
     setProductName(""); //butona bastığında inputu boşaltan yer
     setProductPrice("");
     setImageUrl("");
-  }
+  };
   return (
     <form className="product-form" onSubmit={submitHandler}>
       <div className="product-form-input">
@@ -34,7 +34,7 @@ const ProductForm = (props) => {
           type="text"
           placeholder="Ürün Adı Giriniz..."
           onChange={titleChangeHandler}
-          value={productName}  //bunu two way binding için aldık yani butona bastığında input boşalcak
+          value={productName} //bunu two way binding için aldık yani butona bastığında input boşalcak
         />
       </div>
       <div className="product-form-input">
@@ -55,7 +55,16 @@ const ProductForm = (props) => {
           value={imageUrl}
         />
       </div>
-      <button className="product-form-button">Ürün Ekle</button>
+      <div className="form-buttons">
+        <button className="product-form-button">Ürün Ekle</button>
+        <button
+          className="product-form-button cancel"
+          type="button"
+          onClick={() => props.setIsOpen(false)}
+        >
+          Vazgeç
+        </button>
+      </div>
     </form>
   );
 };
