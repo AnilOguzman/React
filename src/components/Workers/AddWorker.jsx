@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../UI/Card'
+import Button from '../UI/Button'
 const AddWorker = () => {
   return (
     //css'i props olarak geçirdik dikkat et
@@ -11,7 +12,7 @@ const AddWorker = () => {
         <label htmlFor='wage' className='font-medium'>Maaş Miktarı</label>
         <input type='number' className='max-w-[40rem] w-full mx-auto border p-2' placeholder='Maaş Miktarı yazınız' id='wage'/>
         
-        <button className='p-2 text-lg bg-teal-700 text-white mt-2 '>Ekle</button>
+        <Button className='mt-2'>Ekle</Button>
         
     </form>
     </Card>
