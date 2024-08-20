@@ -51,7 +51,7 @@ const AddWorker = (props) => {
   }
   return (
     <Wrapper>
-      {error && <ErrorModal onConfirm={errorHandler} error={error} />}
+      {error && <ErrorModal setWorkers={props.setWorkers} onConfirm={errorHandler} error={error} />}
       
       
       <Card addClass="mt-10 ">
