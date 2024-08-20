@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../Helpers/Wrapper";
 const AddWorker = (props) => {
   const [enteredWorkerName, setEnteredWorkerName] = useState("");
   const [enteredWage, setEnteredWage] = useState("");
@@ -52,7 +53,7 @@ const AddWorker = (props) => {
     setError(null);
   }
   return (
-    <div>
+    <Wrapper>
       {error && <ErrorModal onConfirm={errorHandler} error={error} />}
       
       
@@ -88,7 +89,7 @@ const AddWorker = (props) => {
         </form>
       </Card>
       
-    </div>
+    </Wrapper>
     //css'i props olarak geçirdik dikkat et
     //butonları component halinde oluşturuyoruz çünkü bir buton var biz buna prop geçirerek primary dashed şekilleri verebiliyoruz 
     //yani aslında tek buton var ve biz buna prop vererek şekillendiriyoruz
