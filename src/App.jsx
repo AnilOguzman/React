@@ -7,10 +7,10 @@ function App() {
 
 
   return (
-    <>
+    <div className='App'>
     <Calculator/>
     <CalculatorUseReducer/>
-    </>
+    </div>
   )
 }
 
