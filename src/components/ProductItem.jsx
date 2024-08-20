@@ -1,4 +1,9 @@
-const ProductItem = ({ product, cart, setCart }) => {
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
+const ProductItem = ({ product}) => {
+  const {cart,setCart} = useContext(CartContext);
+
   const findProduct = cart.find((item) => item.id === product.id);
   const addToCart = (product) => {
     // setCart([...cart, product])
