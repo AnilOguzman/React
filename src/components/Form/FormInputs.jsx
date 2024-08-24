@@ -2,6 +2,7 @@
 
 //bu sayfa kullanılmıyor çünkü kullandığımız api açık değil
 import { useState } from "react";
+import useHttp from "../hooks/use-http";
 import "./FormInputs.css";
 
 const initialValues={
@@ -10,9 +11,11 @@ const initialValues={
   image: "",
   category: "",
 };
-
-const FormInputs = ({fetchProductsHandler}) => {
+//onAddProduct kullanmıştı ama Products'ta ve burada methodlar duruyor nolur nolmaz
+//isLoading ve error zaten kullanmadı ama buraya aldı bence eksik yaptı çünkü creatte hata alırsak ekranda döndürmeyecek mesajı
+const FormInputs = ({onAddProduct,fetchProductsHandler}) => {
   const [inputValues, setInputValues] = useState(initialValues);
+  const { isLoading, error, sendRequest: sendProductRequest } = useHttp(); //sendRequest'in adını fetcProducts yaptık
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,29 +25,28 @@ const FormInputs = ({fetchProductsHandler}) => {
     }));
   };
 
+  // const createProduct = () => {
+  //   const generatedId=initialValues.title;
+  //   const createdProduct= {id:generatedId,amount:1,...inputValues};
+
+  //   onAddProduct(createdProduct);
+  //   setInputValues(initialValues );
+  // }     bence gerek yok buna 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newData={
       ...inputValues,
       img:inputValues.image,
-      amount:1,
     };
-    try {
-      const response = await fetch(
-        "https://my-pos-application-api.onrender.com/api/products/create-product",
-        {
-          method: "POST",
-          body: JSON.stringify(newData),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if(response.status===200){
-        fetchProductsHandler(); //productstan bunu prop olarak gönderdik çünkü ekleme yaptığında sayfa kendini otomatik yenilemiyodu.
-        setInputValues(initialValues);//inputları boşaltmak için başlangıç değerlerine döndürdük.
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+
+    sendProductRequest({
+      url:"https://my-pos-application-api.onrender.com/api/products/create-product",
+      method:"POST",
+      body: newData,
+      headers: { "Content-Type": "application/json" },
+    },fetchProductsHandler)
+
   };
 
   return (
