@@ -1,16 +1,16 @@
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 import UserForm from "./components/UserForm";
-import "./App.css";
 import { useSelector } from "react-redux";
+import "./App.css";
 
 function App() {
   const isAuth=useSelector((state)=>state.auth.isAuthenticated);
   return (
     <>
-      {!isAuth && <Header />}
+      <Header />
       {!isAuth && <UserForm />}
-      <Counter />
+      {isAuth && <Counter />}
     </>
   );
 }

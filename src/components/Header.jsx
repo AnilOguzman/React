@@ -1,5 +1,5 @@
 import { useSelector,useDispatch } from "react-redux";
-import { authActions } from "../store";
+import { authActions } from "../store/auth";
 
 
 
@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
       <header>
-        <h1>Header</h1>
+        <h1>Counter</h1>
         {isAuth && <button onClick={logouHandler}>Logout</button>}
       </header>
     );
