@@ -1,11 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store";
+
 
 const UserForm = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   
+  const loginHandler = (e) =>{
+    e.preventDefault();
+    dispatch(authActions.login());
+  }
+
   return (
-    <form>
+    <form onSubmit={loginHandler}>
       <h2>Login</h2>
       <input
         type="text"
