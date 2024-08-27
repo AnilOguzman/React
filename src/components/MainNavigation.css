@@ -1,13 +1,21 @@
 ul {
-    padding: 0;
-    list-style: none;
-  }
-  
-  header ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 20px;
-    font-size: 24px;
-  }
-  
+  padding: 0;
+  list-style: none;
+}
+
+header ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  font-size: 24px;
+}
+/*Link etiketiyle kullandığımız yerleri a etiketi ile aldık dikkat et*/
+header ul a {  
+  text-decoration: none;
+}
+
+header ul a:hover,
+header ul a.active {
+  text-decoration: underline;
+}
